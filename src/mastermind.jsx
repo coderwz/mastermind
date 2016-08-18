@@ -2,6 +2,9 @@
  * Created by wzhu on 8/14/16.
  */
 import React from 'react';
+import Rule from './rule.jsx';
+import DecodeZone from './decode_zone.jsx';
+import PegZone from './pegzone.jsx';
 
 
 class MasterMind extends React.Component {
@@ -9,11 +12,28 @@ class MasterMind extends React.Component {
         super(props);
 
         this.state = {
-            rule: false,
+            colors: new Map([
+                [1, 'one'],
+                [2, 'two'],
+                [3, 'three'],
+                [4, 'four'],
+                [5, 'five'],
+                [6, 'six'],
+            ]),
+            ruleState: false,
+            curColor: 0,
+            curRow: 0,
         };
 
         this.toggleRule = this.toggleRule.bind(this);
+        this.selectPeg = this.selectPeg.bind(this);
     }
+
+    toggleRule() {
+        this.setState({ruleState: !this.state.ruleState});
+    }
+
+    selectPeg() {}
 
     render() {
         return (
@@ -28,9 +48,9 @@ class MasterMind extends React.Component {
                     <span className="mind">MIND</span>
                 </h1>
 
-                <Rule state={this.state.rule} toggleRule={this.toggleRule}/>
+                <Rule state={this.state.ruleState} toggleRule={this.toggleRule}/>
                 <DecodeZone />
-                <PegZone />
+                <PegZone current={this.state.curColor} colors={this.state.colors} selectPeg={this.selectPeg}/>
                 <footer>
                     You can read about how this game was done here:
                     <a href="http://zofiakorcz.pl/mastermind-react-es6-webpack">
@@ -40,41 +60,6 @@ class MasterMind extends React.Component {
             </div>
         );
     }
-
-    toggleRule() {
-        this.setState({});
-    }
 }
 
 export default MasterMind;
-
-class Rule extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="rule">
-                <h3>Show rules</h3>
-
-            </div>
-        );
-    }
-}
-
-class DecodeZone extends React.Component {
-    render() {
-        return (
-            <div className="decode-zone">Decode Zone</div>
-        );
-    }
-}
-
-class PegZone extends React.Component {
-    render() {
-        return (
-            <div className="peg-zone">Peg Zone</div>
-        );
-    }
-}
