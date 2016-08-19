@@ -21,7 +21,7 @@ class MasterMind extends React.Component {
                 [6, 'six'],
             ]),
             ruleState: false,
-            curColor: 0,
+            curColor: 1,
             curRow: 0,
         };
 
@@ -33,7 +33,10 @@ class MasterMind extends React.Component {
         this.setState({ruleState: !this.state.ruleState});
     }
 
-    selectPeg() {}
+    selectPeg(e) {
+        console.log('AAA');
+        this.setState({curColor: e.target.getAttribute('data-idx')});
+    }
 
     render() {
         return (

@@ -11,4 +11,8 @@ gulp.task('less', function () {
         .pipe(gulp.dest('./src/asset/'));
 });
 
-gulp.task('default', ['less']);
+gulp.task('watch', function () {
+    gulp.watch('./src/asset/less/*.less', ['less']);
+});
+
+gulp.task('default', ['watch']);

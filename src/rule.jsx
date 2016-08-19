@@ -6,10 +6,11 @@ class Rule extends React.Component {
     }
 
     render() {
-        var className = this.props.state?'show':'';
+        var className = this.props.state?'show':'',
+            hint = this.props.state?'Hide rules':'Show rules';
         return (
             <div className="rule">
-                <h3 onClick={this.props.toggleRule}>Show rules</h3>
+                <h3 onClick={this.props.toggleRule}>{hint}</h3>
                 <div className={className}>Try to guess the pattern, in both order and color, within ten turns.
                     After submitting a row, a small black peg is placed for each code peg
                     from the guess which is correct in both color and position. A white peg

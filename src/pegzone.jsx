@@ -11,7 +11,7 @@ class PegZone extends React.Component {
             let className = classnames('peg', val, this.props.current==key?'selected':'');
             console.log(className);
             pegs.push(
-                <div key={key} className={className} onClick={this.props.selectPeg} />
+                <div key={key} data-idx={key} className={className} onClick={this.props.selectPeg} />
             );
         }
         return (
